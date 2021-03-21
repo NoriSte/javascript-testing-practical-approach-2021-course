@@ -56,7 +56,6 @@
     "cross-env": "7.0.2",
     "cypress": "6.0.1",
     "cypress-skip-and-only-ui": "1.2.10",
-    "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-prettier": "^3.3.1",
