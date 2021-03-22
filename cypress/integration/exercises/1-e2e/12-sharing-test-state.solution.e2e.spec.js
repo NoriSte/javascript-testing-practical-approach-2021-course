@@ -1,7 +1,5 @@
 /// <reference types="Cypress" />
 
-import jestExpect from 'expect'
-
 /**
  * Main goals
  * - Store the jwt token of the first test and reuse it in the next tests
