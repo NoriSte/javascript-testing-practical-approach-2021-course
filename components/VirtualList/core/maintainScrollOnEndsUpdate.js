@@ -1,30 +1,14 @@
-import { EndsUpdateOptions, Item, ItemWithPosition } from '../typings'
 import {
   getStringifiedItemIds,
   placeSeparatorAtEnds,
   getIdsFromStringifiedIds,
-} from './stringifiedItemIdsHelpers'
-import { getVisibleAtTopItemsOnly, getFirstVisibleAtTopItem } from './visibleItemsHelpers'
+} from "./stringifiedItemIdsHelpers";
+import {
+  getVisibleAtTopItemsOnly,
+  getFirstVisibleAtTopItem,
+} from "./visibleItemsHelpers";
 
-type Params<T extends Item> = {
-  actualScroll: number
-  scrollHeight: number
-  oldStringifiedIds?: string
-  newItems: ItemWithPosition<T>[]
-  endsUpdateOptions: EndsUpdateOptions
-  oldVisibleItems: ItemWithPosition<T>[]
-}
-
-type Result<T extends Item> =
-  | {
-      success: true
-      itemToMaintainVisible: ItemWithPosition<T>
-    }
-  | {
-      success: false
-    }
-
-export const maintainScrollOnEndsUpdate = <T extends Item>(params: Params<T>): Result<T> => {
+export const maintainScrollOnEndsUpdate = (params) => {
   const {
     newItems,
     actualScroll,
@@ -37,47 +21,53 @@ export const maintainScrollOnEndsUpdate = <T extends Item>(params: Params<T>): R
       addedAtBottom = false,
       removedFromBottom = false,
     },
-  } = params
+  } = params;
 
   // input check
   if (!oldStringifiedIds || !newItems.length) {
-    return { success: false }
+    return { success: false };
   }
 
   // if no possible cases are enabled, no calculations are needed
   if (!addedAtTop && !removedFromTop && !addedAtBottom && !removedFromBottom) {
-    return { success: false }
+    return { success: false };
   }
 
   // if the changes are only at the ends, a common item must exist. It will be used as the pivot to
   // break the list and analyze the "top" and the "bottom" of the list itself
-  const oldItemIds = getIdsFromStringifiedIds(oldStringifiedIds)
-  let firstCommonItemId: string | undefined
-  for (let i = 0, n = oldItemIds.length; i < n && firstCommonItemId === undefined; i++) {
-    const firstCommonItem = newItems.find(({ item }) => item.id.toString() === oldItemIds[i])
+  const oldItemIds = getIdsFromStringifiedIds(oldStringifiedIds);
+  let firstCommonItemId;
+  for (
+    let i = 0, n = oldItemIds.length;
+    i < n && firstCommonItemId === undefined;
+    i++
+  ) {
+    const firstCommonItem = newItems.find(
+      ({ item }) => item.id.toString() === oldItemIds[i]
+    );
     if (firstCommonItem) {
-      firstCommonItemId = firstCommonItem.item.id.toString()
+      firstCommonItemId = firstCommonItem.item.id.toString();
     }
   }
   if (firstCommonItemId === undefined) {
     return {
       success: false,
-    }
+    };
   }
 
-  const newStringifiedIds = getStringifiedItemIds(newItems)
+  const newStringifiedIds = getStringifiedItemIds(newItems);
 
-  let oldItemsBeforeCommonItemId = ''
-  let newItemsBeforeCommonItemId = ''
-  let oldsItemAfterCommonItemId = ''
-  let newItemsAfterCommonItemId = ''
+  let oldItemsBeforeCommonItemId = "";
+  let newItemsBeforeCommonItemId = "";
+  let oldsItemAfterCommonItemId = "";
+  let newItemsAfterCommonItemId = "";
 
   const itemsHaveBeen = {
     removedFromTop: false,
     addedAtTop: false,
     removedFromBottom: false,
     addedAtBottom: false,
-  }
+  };
 
   // If there are no changes the previously visible item should remain at the same position.
   // ATTENTION: the component heights could have been changed!
@@ -86,49 +76,63 @@ export const maintainScrollOnEndsUpdate = <T extends Item>(params: Params<T>): R
       items: oldVisibleItems,
       scrollY: actualScroll,
       scrollHeight,
-    })
+    });
     if (firstCommonItem) {
       return {
         success: true,
         itemToMaintainVisible: firstCommonItem,
-      }
+      };
     } else {
       return {
         success: false,
-      }
+      };
     }
   }
 
   // The `itemsHaveBeen` boolean are set here
-  firstCommonItemId = placeSeparatorAtEnds(firstCommonItemId)
+  firstCommonItemId = placeSeparatorAtEnds(firstCommonItemId);
   if (!oldStringifiedIds.startsWith(firstCommonItemId)) {
-    oldItemsBeforeCommonItemId = placeSeparatorAtEnds(oldStringifiedIds.split(firstCommonItemId)[0])
+    oldItemsBeforeCommonItemId = placeSeparatorAtEnds(
+      oldStringifiedIds.split(firstCommonItemId)[0]
+    );
   }
   if (!oldStringifiedIds.endsWith(firstCommonItemId)) {
-    oldsItemAfterCommonItemId = placeSeparatorAtEnds(oldStringifiedIds.split(firstCommonItemId)[1])
+    oldsItemAfterCommonItemId = placeSeparatorAtEnds(
+      oldStringifiedIds.split(firstCommonItemId)[1]
+    );
   }
   if (!newStringifiedIds.startsWith(firstCommonItemId)) {
-    newItemsBeforeCommonItemId = placeSeparatorAtEnds(newStringifiedIds.split(firstCommonItemId)[0])
+    newItemsBeforeCommonItemId = placeSeparatorAtEnds(
+      newStringifiedIds.split(firstCommonItemId)[0]
+    );
   }
   if (!newStringifiedIds.endsWith(firstCommonItemId)) {
-    newItemsAfterCommonItemId = placeSeparatorAtEnds(newStringifiedIds.split(firstCommonItemId)[1])
+    newItemsAfterCommonItemId = placeSeparatorAtEnds(
+      newStringifiedIds.split(firstCommonItemId)[1]
+    );
   }
   if (oldItemsBeforeCommonItemId !== newItemsBeforeCommonItemId) {
-    itemsHaveBeen.removedFromTop = oldItemsBeforeCommonItemId.endsWith(newItemsBeforeCommonItemId)
-    itemsHaveBeen.addedAtTop = newItemsBeforeCommonItemId.endsWith(oldItemsBeforeCommonItemId)
+    itemsHaveBeen.removedFromTop = oldItemsBeforeCommonItemId.endsWith(
+      newItemsBeforeCommonItemId
+    );
+    itemsHaveBeen.addedAtTop = newItemsBeforeCommonItemId.endsWith(
+      oldItemsBeforeCommonItemId
+    );
   }
   if (oldsItemAfterCommonItemId !== newItemsAfterCommonItemId) {
-    itemsHaveBeen.addedAtBottom = newItemsAfterCommonItemId.startsWith(oldsItemAfterCommonItemId)
+    itemsHaveBeen.addedAtBottom = newItemsAfterCommonItemId.startsWith(
+      oldsItemAfterCommonItemId
+    );
     itemsHaveBeen.removedFromBottom = oldsItemAfterCommonItemId.startsWith(
-      newItemsAfterCommonItemId,
-    )
+      newItemsAfterCommonItemId
+    );
   }
 
   const success =
     (addedAtTop && itemsHaveBeen.addedAtTop) ||
     (removedFromTop && itemsHaveBeen.removedFromTop) ||
     (addedAtBottom && itemsHaveBeen.addedAtBottom) ||
-    (removedFromBottom && itemsHaveBeen.removedFromBottom)
+    (removedFromBottom && itemsHaveBeen.removedFromBottom);
 
   if (success) {
     // ATTENTION: oldVisibleItems contains even the buffered items, oldUserVisibleItems is going to
@@ -137,17 +141,25 @@ export const maintainScrollOnEndsUpdate = <T extends Item>(params: Params<T>): R
       items: oldVisibleItems,
       scrollY: actualScroll,
       scrollHeight,
-    })
+    });
 
-    let firstUserVisibleItem: ItemWithPosition<T> | undefined
-    for (let i = 0, n = oldUserVisibleItems.length; i < n && !firstUserVisibleItem; i++) {
-      const item = oldUserVisibleItems[i]
-      if (newStringifiedIds.includes(placeSeparatorAtEnds(item.item.id.toString()))) {
-        firstUserVisibleItem = item
+    let firstUserVisibleItem;
+    for (
+      let i = 0, n = oldUserVisibleItems.length;
+      i < n && !firstUserVisibleItem;
+      i++
+    ) {
+      const item = oldUserVisibleItems[i];
+      if (
+        newStringifiedIds.includes(
+          placeSeparatorAtEnds(item.item.id.toString())
+        )
+      ) {
+        firstUserVisibleItem = item;
       }
     }
 
-    let itemToMaintainVisible: ItemWithPosition<T> | undefined
+    let itemToMaintainVisible;
     // The first item visible by the user could have been removed. This happens when it was in the
     // top (or the bottom) part of the list and some items, including the first visible one, has been removed
     // from the top(or the bottom)
@@ -157,20 +169,20 @@ export const maintainScrollOnEndsUpdate = <T extends Item>(params: Params<T>): R
           ? newItems[0]
           : itemsHaveBeen.removedFromBottom && removedFromBottom
           ? (itemToMaintainVisible = newItems[newItems.length - 1])
-          : undefined
+          : undefined;
     } else if (firstUserVisibleItem) {
-      itemToMaintainVisible = firstUserVisibleItem
+      itemToMaintainVisible = firstUserVisibleItem;
     }
 
     if (itemToMaintainVisible) {
       return {
         success: true,
         itemToMaintainVisible,
-      }
+      };
     }
   }
 
   return {
     success: false,
-  }
-}
+  };
+};

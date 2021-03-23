@@ -1,12 +1,9 @@
 import * as React from "react";
-import * as ReactScrollbar from "react-smooth-scrollbar";
+import ReactScrollbar from "react-smooth-scrollbar";
 import { useCallback, useMemo, useRef, useState } from "react";
-import SmoothScrollbar from "smooth-scrollbar";
 
-import useDidUpdate from "../hooks/useDidUpdate";
 import usePreviousValue from "../hooks/usePreviousValue";
-
-import { Item, ItemWithPosition, Props } from "./typings";
+import useDidUpdate from "../hooks/useDidUpdate";
 
 import { getItemsHeights } from "./core/getItemsHeights";
 import { getItemsInterestedByScroll } from "./core/getItemsInterestedByScroll";
@@ -18,7 +15,7 @@ import { ItemsRenderer } from "./ItemsRenderer";
 
 const noop = () => {};
 
-export const VirtualList = <T extends Item>(props: Props<T>) => {
+export const VirtualList = (props) => {
   const {
     items,
     getItemHeights,
@@ -30,8 +27,8 @@ export const VirtualList = <T extends Item>(props: Props<T>) => {
     onSelect,
   } = props;
 
-  const smoothScrollbarRef = useRef<SmoothScrollbar>();
-  const [scrollY, setScrollY] = useState<number>(0);
+  const smoothScrollbarRef = useRef();
+  const [scrollY, setScrollY] = useState(0);
 
   // To avoid unnecessary calculations in case of a high number of items, an array of items with
   // their position is stored and used from now on
@@ -49,9 +46,9 @@ export const VirtualList = <T extends Item>(props: Props<T>) => {
   }, [items, getItemHeights]);
 
   // The items to be rendered (both the visible ones and the buffered ones) are stored
-  const visibleItems = useMemo<ItemWithPosition<T>[]>(
+  const visibleItems = useMemo(
     () =>
-      getItemsInterestedByScroll<T>({
+      getItemsInterestedByScroll({
         itemsWithPosition,
         scrollY,
         listHeight,
@@ -65,10 +62,10 @@ export const VirtualList = <T extends Item>(props: Props<T>) => {
   // When the items update, the list tries to update the scroll position to maintain the old visible
   // items in the same position. To avoid to refer the old items array (which could be huge) a
   // string representation is used
-  const oldStringifiedIds = usePreviousValue<string>(
+  const oldStringifiedIds = usePreviousValue(
     getStringifiedItemIds(itemsWithPosition)
   );
-  const oldVisibleItems = usePreviousValue<ItemWithPosition<T>[]>(visibleItems);
+  const oldVisibleItems = usePreviousValue(visibleItems);
   useDidUpdate(() => {
     if (oldVisibleItems && oldStringifiedIds) {
       smoothScrollbarRef.current?.scrollTo(
@@ -86,13 +83,9 @@ export const VirtualList = <T extends Item>(props: Props<T>) => {
   }, [items]);
 
   // Children and refs
-  const handleOnScroll = useCallback(
-    ({ offset: { y } }: { offset: { y: number } }) => setScrollY(y),
-    []
-  );
+  const handleOnScroll = useCallback(({ offset: { y } }) => setScrollY(y), []);
   const setRef = useCallback(
-    (params: { scrollbar?: SmoothScrollbar } | null) =>
-      (smoothScrollbarRef.current = params?.scrollbar ?? undefined),
+    (params) => (smoothScrollbarRef.current = params?.scrollbar ?? undefined),
     []
   );
 

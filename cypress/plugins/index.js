@@ -16,7 +16,4 @@
 // `config` is the resolved Cypress config
 // }
 
-const task = require("cypress-skip-and-only-ui/task");
-module.exports = (on, config) => {
-  on("task", task);
-};
+module.exports = (on, config) => {}

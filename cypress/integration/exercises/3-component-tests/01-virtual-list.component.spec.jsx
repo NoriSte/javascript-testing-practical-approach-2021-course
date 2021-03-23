@@ -4,7 +4,7 @@
 import React from 'react'
 import { mount } from '@cypress/react'
 
-import { VirtualList } from '../../../../components/VirtualList'
+import { VirtualList } from '../../../../components/VirtualList/VirtualList'
 
 const createRenderItem = ({ height }) => ({ item }) => {
   return (
@@ -38,7 +38,6 @@ describe('VirtualList', () => {
       { id: 9, name: 'Item 10' },
       { id: 10, name: 'Item 11' },
     ]
-    const visibleItemsAmount = listHeight / itemHeight
 
     // Act
     mount(
