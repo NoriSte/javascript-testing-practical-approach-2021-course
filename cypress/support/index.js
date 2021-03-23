@@ -14,11 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import chaiSubset from "chai-subset";
-import "./commands";
-require("cypress-skip-and-only-ui/support");
+import './commands'
 
-chai.use(chaiSubset);
+module.exports = (on, config) => {
+  require('@cypress/react/plugins/react-scripts')(on, config)
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+  return config
+}

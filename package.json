@@ -50,12 +50,14 @@
   },
   "homepage": "https://github.com/NoriSte/javascript-testing-practical-approach-2021-course#readme",
   "devDependencies": {
+    "@cypress/react": "^4.16.4",
     "@testing-library/cypress": "7.0.1",
-    "chai-subset": "1.6.0",
+    "@types/styled-components": "^5.1.9",
     "concurrently": "5.3.0",
     "cross-env": "7.0.2",
     "cypress": "^6.8.0",
     "cypress-skip-and-only-ui": "1.2.10",
+    "cypress-wait-until": "^1.7.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-prettier": "^3.3.1",
@@ -67,7 +69,10 @@
     "npm": "6.14.8",
     "npm-run-all": "4.1.5",
     "prettier": "^2.1.2",
-    "start-server-and-test": "1.11.5"
+    "start-server-and-test": "1.11.5",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
+    "typescript-styled-plugin": "^0.15.0"
   },
   "dependencies": {
     "gitbook-plugin-anchors": "^0.7.1",
@@ -77,6 +82,10 @@
     "gitbook-plugin-include": "^0.1.0",
     "gitbook-plugin-include-codeblock": "^3.2.2",
     "gitbook-plugin-insert-logo": "^0.1.5",
-    "gitbook-plugin-sitemap": "^1.2.0"
+    "gitbook-plugin-sitemap": "^1.2.0",
+    "react": "^17.0.2",
+    "react-smooth-scrollbar": "^8.0.6",
+    "smooth-scrollbar": "^8.6.1",
+    "styled-components": "^5.2.1"
   }
 }
