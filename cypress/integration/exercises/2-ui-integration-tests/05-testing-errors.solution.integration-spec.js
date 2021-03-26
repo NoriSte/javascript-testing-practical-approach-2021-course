@@ -9,7 +9,6 @@
  * - Test what the user sees when the server returns more than one error
  */
 
-/// <reference types="Cypress" />
 const headers = { 'Access-Control-Allow-Origin': '*' }
 
 beforeEach(() => {
