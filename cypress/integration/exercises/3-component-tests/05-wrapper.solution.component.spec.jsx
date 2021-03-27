@@ -7,8 +7,6 @@
  * - Modify the rendered item to show the selection
  */
 
-// arrivato a creare il 06 con la multiple selection (vedi secondo test di 04)
-
 import React from 'react'
 import { mount } from '@cypress/react'
 import { VirtualList } from '../../../../components/VirtualList/VirtualList'
@@ -60,7 +58,7 @@ const SelectableList = props => {
 }
 SelectableList.displayName = 'SelectableList'
 
-describe.only('VirtualList wrapper', () => {
+describe('VirtualList wrapper', () => {
   beforeEach(() => {
     // adapt the viewport, allows the instructor to have more vertical windows when sharing the screen
     cy.viewport(300, 300)

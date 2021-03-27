@@ -4,9 +4,6 @@
 /**
  * Main goals
  * - Test that clicking on an item select it
- *
- * Additional goals
- * - Test multiple selection
  */
 
 import React from 'react'
@@ -81,80 +78,5 @@ describe('VirtualList', () => {
       // Sinon matchers allow to assert about partials of the params
       expect(stub).to.have.been.calledWith(Cypress.sinon.match({ item: { id: 1, name: 'Item 1' } }))
     })
-  })
-
-  it.skip('Should manage single and multiple selection', () => {
-    // ------------------------------------------
-    // Arrange
-
-    // creating the stub
-    // a stub is needed to intercept the call the VirtualList does
-    const onSelectStub = cy.stub().as('onSelect')
-
-    // creating the data
-    const itemHeight = 30
-    const listHeight = 90
-    const items = [
-      { id: 1, name: 'Item 1' },
-      { id: 2, name: 'Item 2' },
-      { id: 3, name: 'Item 3' },
-    ]
-
-    // mounting the component
-    mount(
-      <VirtualList
-        items={items}
-        getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
-        listHeight={listHeight}
-        onSelect={onSelectStub}
-      />,
-    )
-
-    // ------------------------------------------
-    // select the first item
-    // Act
-    cy.findByText('Item 1')
-      .click()
-      // Assert
-      .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledOnce
-        expect(stub).to.have.been.calledWith(Cypress.sinon.match({ newSelectedIds: [1] }))
-      })
-
-    // ------------------------------------------
-
-    // select the second item
-    // Act
-    cy.findByText('Item 2')
-      .click()
-      // Assert
-      .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledTwice
-        expect(stub).to.have.been.calledWith(Cypress.sinon.match({ newSelectedIds: [2] }))
-      })
-
-    // ------------------------------------------
-    // add the first item to the previous selection
-
-    // keep the meta button  pressed
-    cy.get('body').type('{meta}', { release: false })
-
-    // Act
-    cy.findByText('Item 1')
-      .click()
-      // Assert
-      .get('@onSelect')
-      .should(stub => {
-        console.log(stub.args)
-
-        expect(stub).to.have.been.calledThrice
-        expect(stub).to.have.been.calledWith(Cypress.sinon.match({ newSelectedIds: [2, 1] }))
-      })
-
-    // release the meta button
-    cy.get('body').type('{meta}', { release: true })
   })
 })
