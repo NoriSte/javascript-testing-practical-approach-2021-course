@@ -11,7 +11,7 @@
 
 import React from 'react'
 import { mount } from '@cypress/react'
-import { VirtualList } from '../../../../components/VirtualList/VirtualList'
+import { VirtualList } from '../../../../../components/VirtualList/VirtualList'
 
 // The item renderer to be passed to the list
 const createRenderItem = ({ height }) => ({ item }) => {
@@ -155,7 +155,7 @@ describe('VirtualList', () => {
 
     // tick the clock by a second
     cy.tick(1000)
-      // restore the clock
+      // restore the normal clock behavior
       .invoke('restore')
 
     // ------------------------------------------

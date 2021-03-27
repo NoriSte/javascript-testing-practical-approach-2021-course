@@ -9,7 +9,7 @@
 
 import React from 'react'
 import { mount } from '@cypress/react'
-import { VirtualList } from '../../../../components/VirtualList/VirtualList'
+import { VirtualList } from '../../../../../components/VirtualList/VirtualList'
 
 const createRenderItem = ({ height }) => ({ item, selected, onClick }) => {
   const even = parseInt(item.id.toString()) % 2
@@ -30,7 +30,7 @@ const createRenderItem = ({ height }) => ({ item, selected, onClick }) => {
 }
 
 // wrap the VirtualList to internally manage the selection, passing outside only the new selection
-const SelectableList = props => {
+function SelectableList(props) {
   const { onSelect, ...virtualListProps } = props
 
   // store the selection in an internal state
@@ -56,7 +56,6 @@ const SelectableList = props => {
     />
   )
 }
-SelectableList.displayName = 'SelectableList'
 
 describe('VirtualList wrapper', () => {
   beforeEach(() => {

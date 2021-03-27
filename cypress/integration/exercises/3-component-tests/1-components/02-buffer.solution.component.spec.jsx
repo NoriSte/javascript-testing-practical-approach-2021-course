@@ -11,7 +11,7 @@
 
 import React from 'react'
 import { mount } from '@cypress/react'
-import { VirtualList } from '../../../../components/VirtualList/VirtualList'
+import { VirtualList } from '../../../../../components/VirtualList/VirtualList'
 
 // The item renderer to be passed to the list
 const createRenderItem = ({ height }) => ({ item }) => {
