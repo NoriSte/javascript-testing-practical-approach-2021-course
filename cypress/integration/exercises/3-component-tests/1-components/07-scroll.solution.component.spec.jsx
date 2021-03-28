@@ -41,7 +41,7 @@ function SelectableList(props) {
   const handleSelect = React.useCallback(
     ({ newSelectedIds }) => {
       setSelectedItems(newSelectedIds)
-      // call the passed stub to notify the test about the new selected ids
+      // call the passed spy to notify the test about the new selected ids
       onSelect(newSelectedIds)
     },
     [setSelectedItems, onSelect],
@@ -100,7 +100,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -127,9 +127,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledTwice
-        expect(stub).to.have.been.calledWith([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+      .should(spy => {
+        expect(spy).to.have.been.calledTwice
+        expect(spy).to.have.been.calledWith([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
       })
 
     // release the shift button
@@ -170,7 +170,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -204,7 +204,7 @@ describe('VirtualList wrapper', () => {
         .click()
         // Assert
         .get('@onSelect')
-        .should(stub => {
+        .should(spy => {
           const expectedSelection = []
           // calculates the expected selection at runtime
           // Please note: dynamic tests are harder to be comprehended and debugged
@@ -212,8 +212,8 @@ describe('VirtualList wrapper', () => {
             expectedSelection.push(items[j].id)
           }
 
-          expect(stub).to.have.been.calledTwice
-          expect(stub).to.have.been.calledWith(expectedSelection)
+          expect(spy).to.have.been.calledTwice
+          expect(spy).to.have.been.calledWith(expectedSelection)
         })
 
       // release the shift button

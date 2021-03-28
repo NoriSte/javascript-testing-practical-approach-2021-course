@@ -6,7 +6,6 @@
  * - Repeat that the show/hide but using `mountHook` instead of `mount` and a wrapper component
  */
 
-import React from 'react'
 import { mountHook } from '@cypress/react'
 import { useDelayedShow } from '../../../../../components/hooks/useDelayedShow'
 

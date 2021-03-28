@@ -38,7 +38,7 @@ function SelectableList(props) {
   const handleSelect = React.useCallback(
     ({ newSelectedIds }) => {
       setSelectedItems(newSelectedIds)
-      // call the passed stub to notify the test about the new selected ids
+      // call the passed spy to notify the test about the new selected ids
       onSelect(newSelectedIds)
     },
     [setSelectedItems, onSelect],
@@ -80,7 +80,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -94,9 +94,9 @@ describe('VirtualList wrapper', () => {
     cy.findByText('Item 1').click()
 
     // ------------------------------------------
-    cy.get('@onSelect').should(stub => {
-      expect(stub).to.have.been.calledOnce
-      expect(stub).to.have.been.calledWith([1])
+    cy.get('@onSelect').should(spy => {
+      expect(spy).to.have.been.calledOnce
+      expect(spy).to.have.been.calledWith([1])
     })
   })
 })

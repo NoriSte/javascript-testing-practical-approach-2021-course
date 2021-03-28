@@ -37,9 +37,9 @@ describe('VirtualList', () => {
     // ------------------------------------------
     // Arrange
 
-    // creating the stub
-    // a stub is needed to intercept the call the VirtualList does
-    const onSelectStub = cy.stub().as('onSelect')
+    // creating the spy
+    // a spy is needed to intercept the call the VirtualList does
+    const onSelectSpy = cy.spy().as('onSelect')
 
     // creating the data
     const itemHeight = 30
@@ -57,7 +57,7 @@ describe('VirtualList', () => {
         getItemHeights={() => itemHeight}
         RenderItem={createRenderItem({ height: itemHeight })}
         listHeight={listHeight}
-        onSelect={onSelectStub}
+        onSelect={onSelectSpy}
       />,
     )
 
@@ -66,17 +66,17 @@ describe('VirtualList', () => {
     cy.findByText('Item 1').click()
 
     // ------------------------------------------
-    // Assert (cy.wrap(onSelectStub) would do the same)
-    cy.get('@onSelect').should(stub => {
-      expect(stub).to.have.been.calledOnce
+    // Assert (cy.wrap(onSelectSpy) would do the same)
+    cy.get('@onSelect').should(spy => {
+      expect(spy).to.have.been.calledOnce
 
       // see
       // https://sinonjs.org/releases/latest/assertions/
       // https://sinonjs.org/releases/latest/matchers/
-      expect(stub).to.have.been.calledWith(Cypress.sinon.match({ newSelectedIds: [1] }))
+      expect(spy).to.have.been.calledWith(Cypress.sinon.match({ newSelectedIds: [1] }))
 
       // Sinon matchers allow to assert about partials of the params
-      expect(stub).to.have.been.calledWith(Cypress.sinon.match({ item: { id: 1, name: 'Item 1' } }))
+      expect(spy).to.have.been.calledWith(Cypress.sinon.match({ item: { id: 1, name: 'Item 1' } }))
     })
   })
 })

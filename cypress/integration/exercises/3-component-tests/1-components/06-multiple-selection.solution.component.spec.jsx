@@ -41,7 +41,7 @@ function SelectableList(props) {
   const handleSelect = React.useCallback(
     ({ newSelectedIds }) => {
       setSelectedItems(newSelectedIds)
-      // call the passed stub to notify the test about the new selected ids
+      // call the passed spy to notify the test about the new selected ids
       onSelect(newSelectedIds)
     },
     [setSelectedItems, onSelect],
@@ -83,7 +83,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -99,9 +99,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledOnce
-        expect(stub).to.have.been.calledWith([1])
+      .should(spy => {
+        expect(spy).to.have.been.calledOnce
+        expect(spy).to.have.been.calledWith([1])
       })
 
     // ------------------------------------------
@@ -114,9 +114,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledTwice
-        expect(stub).to.have.been.calledWith([1, 2])
+      .should(spy => {
+        expect(spy).to.have.been.calledTwice
+        expect(spy).to.have.been.calledWith([1, 2])
       })
 
     // release the meta button
@@ -140,7 +140,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -156,9 +156,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledOnce
-        expect(stub).to.have.been.calledWith([1])
+      .should(spy => {
+        expect(spy).to.have.been.calledOnce
+        expect(spy).to.have.been.calledWith([1])
       })
 
     // ------------------------------------------
@@ -171,9 +171,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledTwice
-        expect(stub).to.have.been.calledWith([])
+      .should(spy => {
+        expect(spy).to.have.been.calledTwice
+        expect(spy).to.have.been.calledWith([])
       })
 
     // release the alt button
@@ -197,7 +197,7 @@ describe('VirtualList wrapper', () => {
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.stub().as('onSelect')}
+        onSelect={cy.spy().as('onSelect')}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
@@ -213,9 +213,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledOnce
-        expect(stub).to.have.been.calledWith([1])
+      .should(spy => {
+        expect(spy).to.have.been.calledOnce
+        expect(spy).to.have.been.calledWith([1])
       })
 
     // ------------------------------------------
@@ -228,9 +228,9 @@ describe('VirtualList wrapper', () => {
       .click()
       // Assert
       .get('@onSelect')
-      .should(stub => {
-        expect(stub).to.have.been.calledTwice
-        expect(stub).to.have.been.calledWith([1, 2, 3])
+      .should(spy => {
+        expect(spy).to.have.been.calledTwice
+        expect(spy).to.have.been.calledWith([1, 2, 3])
       })
 
     // release the shift button
