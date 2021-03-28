@@ -44,9 +44,8 @@ context('The sign up page', () => {
 
     cy.get('button').click()
 
-    cy.location()
+    cy.location({ timeout: 10000 })
       // if `should` fails, it retries the previous, side-effects free, command
-      .its('pathname', { timeout: 10000 })
-      .should('eq', '/')
+      .should(location => expect(location.pathname).to.eq('/'))
   })
 })

@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "gitbook install && npm run realworld:install",
     "test": "start-server-and-test realworld:start http://localhost:4100 test:everything",
-    "test:everything": "npm run realworld:cy && npm run run:examples",
+    "test:everything": "npm run realworld:cy && npm run run:exercises",
     "// BOOK ///////////": "",
     "book:serve": "npx gitbook serve",
     "book:build": "npx gitbook build . docs",
@@ -25,13 +25,12 @@
     "realworld:backend:start": "cd realworld/backend && npm start",
     "realworld:db:start": "cd realworld/backend && npm run mongo:start",
     "realworld:cy": "npm run cy-run-record -- --spec \"cypress/integration/realworld/**/*\"",
-    "// EXAMPLES ///////////": "",
-    "run:examples": "npm-run-all -s example:**",
-    "example:headless-browser": "npm run cy-run-record -- --spec \"cypress/integration/**/headless-browser.*\"",
-    "example:signup": "npm run cy-run-record -- --spec \"cypress/integration/examples/signup/*\"",
-    "example:signup-integration": "npm run cy-run-record -- --spec \"cypress/integration/examples/signup-integration/*\"",
-    "example:authenticate-command": "npm run cy-run-record -- --spec \"cypress/integration/examples/authenticate-command/*\"",
-    "example:monitoring-tests": "npm run cy-run-record -- --spec \"cypress/integration/examples/monitoring-tests/*\""
+    "// EXERCISES ///////////": "",
+    "run:exercises": "npm-run-all -s exercises:**",
+    "exercises:e2e": "npm run cy-run-record -- --spec \"cypress/integration/exercises/1-e2e-tests/*\"",
+    "exercises:ui-integration": "npm run cy-run-record -- --spec \"cypress/integration/exercises/2-ui-integration-tests/*\"",
+    "exercises:component": "npm run cy-run-record -- --spec \"cypress/integration/exercises/3-component-tests/**/*\"",
+    "exercises:unit": "npm run cy-run-record -- --spec \"cypress/integration/exercises/4-unit-tests/*\""
   },
   "repository": {
     "type": "git",
