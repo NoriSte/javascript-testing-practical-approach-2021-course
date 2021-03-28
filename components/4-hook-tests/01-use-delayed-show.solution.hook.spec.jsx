@@ -6,13 +6,13 @@
  * - Test the `useDelayedShow` hook through a component that uses it
  */
 
-import React from 'react'
-import { mount } from '@cypress/react'
-import { useDelayedShow } from '../../../../../components/hooks/useDelayedShow'
+import React from "react";
+import { mount } from "@cypress/react";
+import { useDelayedShow } from "../hooks/useDelayedShow";
 
 // wrap the useDelayedShow hook
 function HookConsumer() {
-  const { visible, show, hide } = useDelayedShow()
+  const { visible, show, hide } = useDelayedShow();
 
   return (
     <>
@@ -20,25 +20,25 @@ function HookConsumer() {
       <button onClick={show}>Show</button>
       <button onClick={hide}>Hide</button>
     </>
-  )
+  );
 }
 
-describe('useDelayedShow', () => {
+describe("useDelayedShow", () => {
   beforeEach(() => {
     // adapt the viewport, allows the instructor to have more vertical windows when sharing the screen
-    cy.viewport(300, 300)
-  })
+    cy.viewport(300, 300);
+  });
 
-  it('Should have visible set to false at the beginning', () => {
+  it("Should have visible set to false at the beginning", () => {
     // ------------------------------------------
     // Arrange
-    mount(<HookConsumer />)
+    mount(<HookConsumer />);
 
     // ------------------------------------------
     // Act
 
     // ------------------------------------------
     // Assert
-    cy.findByText('Visible: false').should('be.visible')
-  })
-})
+    cy.findByText("Visible: false").should("be.visible");
+  });
+});

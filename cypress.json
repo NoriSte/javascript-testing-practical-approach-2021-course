@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://localhost:4100",
   "experimentalComponentTesting": true,
-  "componentFolder": "cypress/integration/exercises/3-component-tests",
+  "componentFolder": "components",
   "video": false
 }

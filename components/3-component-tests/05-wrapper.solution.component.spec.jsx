@@ -7,42 +7,48 @@
  * - Modify the rendered item to show the selection
  */
 
-import React from 'react'
-import { mount } from '@cypress/react'
-import { VirtualList } from '../../../../../components/VirtualList/VirtualList'
+import React from "react";
+import { mount } from "@cypress/react";
+import { VirtualList } from "../VirtualList/VirtualList";
 
 const createRenderItem = ({ height }) => ({ item, selected, onClick }) => {
-  const even = parseInt(item.id.toString()) % 2
+  const even = parseInt(item.id.toString()) % 2;
 
   // the colors are helpful to easily distinguish the rows
-  const backgroundColor = selected ? (even ? '#0357d8' : '#007AFF') : even ? '#DDD' : '#EEE'
+  const backgroundColor = selected
+    ? even
+      ? "#0357d8"
+      : "#007AFF"
+    : even
+    ? "#DDD"
+    : "#EEE";
 
   return (
     <div
-      style={{ height, backgroundColor, fontSize: 15, fontFamily: 'arial' }} // the item must call the onClick callback to get the selection work
-      onClick={event => {
-        onClick({ item, event })
+      style={{ height, backgroundColor, fontSize: 15, fontFamily: "arial" }} // the item must call the onClick callback to get the selection work
+      onClick={(event) => {
+        onClick({ item, event });
       }}
     >
       {item.name}
     </div>
-  )
-}
+  );
+};
 
 // wrap the VirtualList to internally manage the selection, passing outside only the new selection
 function SelectableList(props) {
-  const { onSelect, ...virtualListProps } = props
+  const { onSelect, ...virtualListProps } = props;
 
   // store the selection in an internal state
-  const [selectedItems, setSelectedItems] = React.useState([])
+  const [selectedItems, setSelectedItems] = React.useState([]);
   const handleSelect = React.useCallback(
     ({ newSelectedIds }) => {
-      setSelectedItems(newSelectedIds)
+      setSelectedItems(newSelectedIds);
       // call the passed spy to notify the test about the new selected ids
-      onSelect(newSelectedIds)
+      onSelect(newSelectedIds);
     },
-    [setSelectedItems, onSelect],
-  )
+    [setSelectedItems, onSelect]
+  );
 
   // Transparently renders the VirtualList, apart from:
   // - storing the selection
@@ -54,49 +60,49 @@ function SelectableList(props) {
       // VirtualList props passed from the test
       {...virtualListProps}
     />
-  )
+  );
 }
 
-describe('VirtualList wrapper', () => {
+describe("VirtualList wrapper", () => {
   beforeEach(() => {
     // adapt the viewport, allows the instructor to have more vertical windows when sharing the screen
-    cy.viewport(300, 300)
-  })
+    cy.viewport(300, 300);
+  });
 
-  it('Playground: test the selection with a mini-app that exposes the selected items', () => {
+  it("Playground: test the selection with a mini-app that exposes the selected items", () => {
     // ------------------------------------------
     // Arrange
 
     // creating the data
-    const itemHeight = 30
-    const listHeight = 90
+    const itemHeight = 30;
+    const listHeight = 90;
     const items = [
-      { id: 1, name: 'Item 1' },
-      { id: 2, name: 'Item 2' },
-      { id: 3, name: 'Item 3' },
-    ]
+      { id: 1, name: "Item 1" },
+      { id: 2, name: "Item 2" },
+      { id: 3, name: "Item 3" },
+    ];
 
     // mounting the component
     mount(
       <SelectableList
         // test-specific props
-        onSelect={cy.spy().as('onSelect')}
+        onSelect={cy.spy().as("onSelect")}
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
         RenderItem={createRenderItem({ height: itemHeight })}
         listHeight={listHeight}
-      />,
-    )
+      />
+    );
 
     // ------------------------------------------
     // Act
-    cy.findByText('Item 1').click()
+    cy.findByText("Item 1").click();
 
     // ------------------------------------------
-    cy.get('@onSelect').should(spy => {
-      expect(spy).to.have.been.calledOnce
-      expect(spy).to.have.been.calledWith([1])
-    })
-  })
-})
+    cy.get("@onSelect").should((spy) => {
+      expect(spy).to.have.been.calledOnce;
+      expect(spy).to.have.been.calledWith([1]);
+    });
+  });
+});
