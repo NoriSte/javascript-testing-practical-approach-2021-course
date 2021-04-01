@@ -1,11 +1,10 @@
 /// <reference types="Cypress" />
-/// <reference types="cypress-wait-until" />
 
 /**
  * Main goals
  * - Test the additive (by keeping the "meta" key pressed) selection
  *
- * Additional goals:
+ * Additional goals
  * - Test the subtractive selection ("alt" pressed)
  * - Test the range selection ("shift" pressed)
  */

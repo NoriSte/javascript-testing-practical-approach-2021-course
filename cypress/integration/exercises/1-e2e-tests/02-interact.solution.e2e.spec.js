@@ -6,9 +6,14 @@
  * - Type something into it
  *
  *
- * Additional goals:
+ * Additional goals
  * - Speed up typing
  * - Change the input value without using the type command
+ *
+ * What to learn
+ * - basic interactions with the app under test
+ * - using the devtools to find out the right selector to retrieve DOM elements
+ * - Cypress uses jQuery
  */
 
 context('The sign up page', () => {

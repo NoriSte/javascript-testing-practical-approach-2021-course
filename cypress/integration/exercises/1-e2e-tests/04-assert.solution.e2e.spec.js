@@ -7,8 +7,20 @@
  * - Assert that everything works
  * - Check that the test works if launched more times
  *
- * Additional goals:
+ * Additional goals
  * - Avoid unnecessary waiting
+ * - Log the Cypress's commands queue
+ *
+ * What to learn
+ * - adding assertions to close the circle and get the test a real test
+ * - analyzing the behavior of the app and asserting about it
+ * - thinking about what to assert
+ * - Cypress's automating retrying
+ * - Command's timeout
+ * - Cypress commands queue
+ *
+ * What to think about
+ * - The test could fail because of server delays, Cypress doesn't wait forever
  */
 
 context('The sign up page', () => {
@@ -35,7 +47,7 @@ context('The sign up page', () => {
     cy.location().its('pathname').should('eq', '/')
   })
 
-  it('Playground: avoid unnecessary timeout', () => {
+  it('Playground: avoid unnecessary timeout', function () {
     const random = Math.round(Math.random() * 1000000)
 
     cy.get('.form-control').eq(0).type(`foo${random}`)
@@ -47,5 +59,8 @@ context('The sign up page', () => {
     cy.location({ timeout: 10000 })
       // if `should` fails, it retries the previous, side-effects free, command
       .should(location => expect(location.pathname).to.eq('/'))
+
+    // log the Cypress commands
+    console.log(this.test.commands)
   })
 })

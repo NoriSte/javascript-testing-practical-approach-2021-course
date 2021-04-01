@@ -5,8 +5,19 @@
  * - Intercept the XHR request
  * - Wait for the XHR request
  *
- * Additional goals:
+ * Additional goals
  * - Leverage glob search to avoid hardcoding the server host
+ *
+ * What to learn
+ * - Getting the test more useful in case of failure
+ * - What kind of errors are discoverable with a high-level test and what aren't
+ * - Intercepting XHR requests
+ * - The importance of the test execution speed
+ * - Avoid flaky fixed timeouts
+ *
+ * What to think about
+ * - Does the test error point you directly to the problem?
+ * - Do the screenshot, video, and the error avoid you to debug the test?
  */
 
 context('The sign up page', () => {

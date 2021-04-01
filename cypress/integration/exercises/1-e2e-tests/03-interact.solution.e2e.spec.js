@@ -4,9 +4,19 @@
  * Main goals
  * - Compile all the registration form
  *
- * Additional goals:
+ * Additional goals
  * - Leverage cy.get' aliases
  * - Limit the scope of cy.get by searching only within the form
+ *
+ * What to learn
+ * - interact with multiple elements
+ * - getting familiar with Cypress's asynchronicity
+ * - using selector aliases
+ * - time-travelling through the Test Runner
+ * - exploring the many ways offered by Cypress to interact with elements (`cy.get().then()`, `cy.within()`, `cy.get().eql`, etc.)
+ *
+ * What to think about
+ * - the test is not deterministic, the user can't be registered twice. What could we do?
  */
 
 context('The sign up page', () => {

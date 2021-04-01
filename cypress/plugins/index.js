@@ -16,4 +16,7 @@
 // `config` is the resolved Cypress config
 // }
 
-module.exports = (on, config) => {}
+module.exports = (on, config) => {
+  // you can open devtools directly
+  // see https://docs.cypress.io/api/plugins/browser-launch-api#Modify-browser-launch-arguments
+}

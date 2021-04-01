@@ -4,7 +4,7 @@
  * Main goals
  * - Navigate the home page and get the user already logged in by stubbing the back-end
  *
- * Additional goals:
+ * Additional goals
  * - If you use a fixture, assert about it to check it contains the data you need
  */
 

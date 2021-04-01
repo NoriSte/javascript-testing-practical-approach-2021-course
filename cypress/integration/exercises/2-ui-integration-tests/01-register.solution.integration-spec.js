@@ -4,7 +4,7 @@
  * Main goals
  * - Stub the server
  *
- * Additional goals:
+ * Additional goals
  * - Clean up the test removing everything unneeded
  */
 

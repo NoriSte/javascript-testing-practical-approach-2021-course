@@ -12,6 +12,7 @@ Cypress.Commands.add('register', { prevSubject: 'optional' }, function (_subject
   // ------------------------------
   // leverage the previous token
   if (previousJwt) {
+    // please note: cy.log accepts markdown too
     cy.log('Try to reuse jwt token 🤞')
     // set the token
     localStorage.setItem('jwt', previousJwt)

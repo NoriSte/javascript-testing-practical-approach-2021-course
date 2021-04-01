@@ -4,7 +4,7 @@
  * Main goals
  * - Assert about the request payload
  *
- * * Additional goals:
+ * * Additional goals
  * - Check even the response status
  */
 

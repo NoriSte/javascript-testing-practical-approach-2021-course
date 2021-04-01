@@ -4,7 +4,7 @@
  * Main goals
  * - Leverage Testing Library
  *
- * * Additional goals:
+ * * Additional goals
  * - Retrieve the button through its role
  */
 

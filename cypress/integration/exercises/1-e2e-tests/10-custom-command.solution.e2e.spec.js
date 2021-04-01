@@ -6,7 +6,7 @@ import jestExpect from 'expect'
  * Main goals
  * - Write a custom command that abstracts away the authentication code
  *
- * * Additional goals:
+ * * Additional goals
  * - Control logging instead of using Cypress' default one
  */
 

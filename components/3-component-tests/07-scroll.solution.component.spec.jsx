@@ -1,11 +1,10 @@
 /// <reference types="Cypress" />
-/// <reference types="cypress-wait-until" />
 
 /**
  * Main goals
  * - Scroll the list and tests that selection a range (by keeping the "shift" key pressed) works as expected
  *
- * Additional goals:
+ * Additional goals
  * - Make the test working even without knowing in advance which items will be visible
  */
 

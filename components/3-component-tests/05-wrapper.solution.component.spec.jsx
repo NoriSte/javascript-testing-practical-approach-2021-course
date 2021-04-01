@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-/// <reference types="cypress-wait-until" />
 
 /**
  * Main goals

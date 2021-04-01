@@ -7,7 +7,7 @@ import jestExpect from 'expect'
  * - Assert about the response status code
  * - Assert about the response payload
  *
- * * Additional goals:
+ * * Additional goals
  * - Leverage Jest' expect instead of Cypress' expect (FYI: Cypress' expect is Chai' expect)
  */
 
