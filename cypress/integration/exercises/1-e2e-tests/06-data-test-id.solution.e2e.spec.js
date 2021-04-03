@@ -3,6 +3,9 @@
 /**
  * Main goals
  * - Leverage data-testid selectors
+ *
+ * What to learn
+ * - Why element/id/class-based selectors aren't stable
  */
 
 context('The sign up page', () => {

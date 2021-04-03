@@ -7,8 +7,14 @@ import jestExpect from 'expect'
  * - Assert about the response status code
  * - Assert about the response payload
  *
- * * Additional goals
+ * Additional goals
  * - Leverage Jest' expect instead of Cypress' expect (FYI: Cypress' expect is Chai' expect)
+ *
+ * What to learn
+ * - Making more assertions on the same subject
+ * - Excluding as much errors as possible
+ * - How much important is to test the payloads, even if it's not a user-like check
+ * - Understanding what to care about: does the client need to know how the token is made up?
  */
 
 context('The sign up page', () => {
@@ -31,7 +37,7 @@ context('The sign up page', () => {
 
     cy.wait('@signup-request').then(interception => {
       // assert about the request payload
-      expect(interception.request.body).to.deep.eq({
+      expect(interception.request.body, 'Request payload').to.deep.eq({
         user: {
           username: `foo${random}`,
           email: `foo${random}@bar.com`,
@@ -40,17 +46,25 @@ context('The sign up page', () => {
       })
 
       // assert about the response status code
-      expect(interception.response.statusCode).to.eq(200)
+      expect(interception.response.statusCode, 'Response status').to.eq(200)
 
       // assert about the response payload
       const responseBody = interception.response.body
-      expect(responseBody.user).to.have.property('username', `foo${random}`)
-      expect(responseBody.user).to.have.property('email', `foo${random}@bar.com`)
+      expect(responseBody.user, 'Response payload:  username').to.have.property(
+        'username',
+        `foo${random}`,
+      )
+      expect(responseBody.user, 'Response payload: email').to.have.property(
+        'email',
+        `foo${random}@bar.com`,
+      )
       // we can't assert about the payload content because it's randomic
-      expect(responseBody.user).to.have.property('token').and.to.be.a('string').and.not.to.be.empty
+      expect(responseBody.user, 'Response payload: token')
+        .to.have.property('token')
+        .and.to.be.a('string').and.not.to.be.empty
     })
 
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 
   it(`Playground: assert using Jest' expect the response status`, () => {
@@ -87,6 +101,6 @@ context('The sign up page', () => {
       })
     })
 
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 })

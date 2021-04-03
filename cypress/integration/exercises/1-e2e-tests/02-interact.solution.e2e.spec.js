@@ -11,8 +11,8 @@
  * - Change the input value without using the type command
  *
  * What to learn
- * - basic interactions with the app under test
- * - using the devtools to find out the right selector to retrieve DOM elements
+ * - Basic interactions with the app under test
+ * - Using the devtools to find out the right selector to retrieve DOM elements
  * - Cypress uses jQuery
  */
 

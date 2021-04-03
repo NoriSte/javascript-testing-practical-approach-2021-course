@@ -1,5 +1,9 @@
 /// <reference types="Cypress" />
 
+// ----------------------------------------- //
+// BONUS EXERCISE                            //
+// ----------------------------------------- //
+
 /**
  * Main goals
  * - Wrap the VirtualList into a component that brings the items and set the selection into a state

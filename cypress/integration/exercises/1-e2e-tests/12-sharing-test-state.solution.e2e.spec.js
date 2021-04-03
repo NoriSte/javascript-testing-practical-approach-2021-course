@@ -3,6 +3,9 @@
 /**
  * Main goals
  * - Store the jwt token of the first test and reuse it in the next tests
+ *
+ * What to learn
+ * - Tests must work independently from other tests
  */
 
 let previousJwt

@@ -6,7 +6,7 @@
  * - Wait for the XHR request
  *
  * Additional goals
- * - Leverage glob search to avoid hardcoding the server host
+ * - Leverage glob search to avoid hard coding the server host
  *
  * What to learn
  * - Getting the test more useful in case of failure
@@ -42,7 +42,7 @@ context('The sign up page', () => {
     cy.location().its('pathname').should('eq', '/')
   })
 
-  it('Playground: avoid hardcoding the server host', () => {
+  it('Playground: avoid hard coding the server host', () => {
     const random = Math.round(Math.random() * 1000000)
 
     cy.get('.form-control').eq(0).type(`foo${random}`)

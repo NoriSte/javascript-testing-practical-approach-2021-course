@@ -4,8 +4,13 @@
  * Main goals
  * - Assert about the request payload
  *
- * * Additional goals
+ * Additional goals
  * - Check even the response status
+ * - Log a custom string if the status doesn't match the expected one
+ *
+ * What to learn
+ * - Why reducing the amount of possible errors is useful
+ * - Leverage every automatic Cypress's waiting
  */
 
 context('The sign up page', () => {
@@ -37,10 +42,10 @@ context('The sign up page', () => {
         },
       })
 
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 
-  it.only('Playground: assert about the response status', () => {
+  it('Playground: assert about the response status', () => {
     const random = Math.round(Math.random() * 1000000)
 
     cy.findByPlaceholderText('Username').type(`foo${random}`)
@@ -53,7 +58,7 @@ context('The sign up page', () => {
 
     cy.wait('@signup-request').then(interception => {
       // assert about the request payload
-      expect(interception.request.body).to.deep.eq({
+      expect(interception.request.body, 'Request payload').to.deep.eq({
         user: {
           username: `foo${random}`,
           email: `foo${random}@bar.com`,
@@ -62,9 +67,9 @@ context('The sign up page', () => {
       })
 
       // assert about the response status code
-      expect(interception.response.statusCode).to.eq(200)
+      expect(interception.response.statusCode, 'Response status').to.eq(200)
     })
 
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 })

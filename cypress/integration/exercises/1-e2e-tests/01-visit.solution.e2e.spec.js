@@ -9,10 +9,10 @@
  * - Change the viewport once for all the tests
  *
  * What to learn
- * - using Cypress's documentation
- * - using basic Cypress's commands
- * - getting familiar with the Cypress's UI
- * - getting familiar `before`, `beforeEach`
+ * - Using Cypress's documentation
+ * - Using basic Cypress's commands
+ * - Getting familiar with the Cypress's UI
+ * - Getting familiar `before`, `beforeEach`
  */
 
 context('The site', () => {

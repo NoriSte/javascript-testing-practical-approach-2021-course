@@ -2,6 +2,9 @@
 /**
  * Main goals
  * - Move the fixtures away from the body of the test
+ *
+ * What to learn
+ * - The importance of the name of the fixtures
  */
 
 const headers = { 'Access-Control-Allow-Origin': '*' }

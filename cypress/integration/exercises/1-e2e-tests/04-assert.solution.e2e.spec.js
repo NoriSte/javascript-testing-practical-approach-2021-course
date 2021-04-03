@@ -12,9 +12,9 @@
  * - Log the Cypress's commands queue
  *
  * What to learn
- * - adding assertions to close the circle and get the test a real test
- * - analyzing the behavior of the app and asserting about it
- * - thinking about what to assert
+ * - Adding assertions to close the circle and get the test a real test
+ * - Analyzing the behavior of the app and asserting about it
+ * - Thinking about what to assert
  * - Cypress's automating retrying
  * - Command's timeout
  * - Cypress commands queue

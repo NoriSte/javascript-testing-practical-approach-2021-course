@@ -1,10 +1,13 @@
 /// <reference types="Cypress" />
 
-import jestExpect from 'expect'
-
 /**
  * Main goals
  * - Leverage the app action exposed by the React application
+ *
+ * What to learn
+ * - The importance of speeding up the tests
+ * - Exposing some "shortcuts" from the front-end application
+ * - Never using the UI to reach app state
  */
 
 Cypress.Commands.add('register', { prevSubject: 'optional' }, function (_subject) {

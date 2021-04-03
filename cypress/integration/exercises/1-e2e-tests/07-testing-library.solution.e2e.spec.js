@@ -4,8 +4,12 @@
  * Main goals
  * - Leverage Testing Library
  *
- * * Additional goals
+ * Additional goals
  * - Retrieve the button through its role
+ *
+ * What to learn
+ * - Data-testid selectors don't help in case of debugging, is the property missing? Is it empty? Is it wrong?
+ * - The importance of testing the same way the users use the app
  */
 
 context('The sign up page', () => {
@@ -32,7 +36,7 @@ context('The sign up page', () => {
 
     // from a user perspective, asserting about the content of the page is better than checking the
     // URL (because the redirect could happen but the page could be blank)
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 
   it('Playground: retrieve button by role', () => {
@@ -48,6 +52,6 @@ context('The sign up page', () => {
 
     cy.wait('@signup-request')
 
-    cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+    cy.findByText('No articles are here... yet.').should('be.visible')
   })
 })

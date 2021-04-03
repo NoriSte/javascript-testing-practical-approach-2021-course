@@ -1,29 +1,45 @@
 /// <reference types="Cypress" />
 
-import jestExpect from 'expect'
-
 /**
  * Main goals
  * - Write a custom command that abstracts away the authentication code
  *
- * * Additional goals
+ * Additional goals
  * - Control logging instead of using Cypress' default one
+ *
+ * What to learn
+ * - Shortening the test
+ * - Abstracting away the repetitive code
+ *
+ * What to think about
+ * - Keeping the abstraction level as low as possible (let's talk about the PageObject model...)
+ * - How could you speed up the test without using `type`?
  */
 
+const noLog = { log: false }
+
 Cypress.Commands.add('register', { prevSubject: 'optional' }, function (_subject) {
-  cy.visit('/register')
+  cy.log('**Automatic registration start**')
+
+  cy.visit('/register', noLog)
 
   const random = Math.round(Math.random() * 1000000)
 
-  cy.findByPlaceholderText('Username', { log: false }).type(`foo${random}`, { delay: 0 })
-  cy.findByPlaceholderText('Email', { log: false }).type(`foo${random}@bar.com`, { delay: 0 })
-  cy.findByPlaceholderText('Password', { log: false }).type('baz', { delay: 0 })
+  cy.findByPlaceholderText('Username', noLog).type(`foo${random}`, {
+    delay: 0,
+    log: false,
+  })
+  cy.findByPlaceholderText('Email', noLog).type(`foo${random}@bar.com`, {
+    delay: 0,
+    log: false,
+  })
+  cy.findByPlaceholderText('Password', noLog).type('baz', { delay: 0, log: false })
 
   cy.intercept('POST', '**/api/users').as('signup-request')
 
-  cy.get('form').within(() => cy.findByText('Sign up').click())
+  cy.get('form', noLog).within(() => cy.findByText('Sign up', noLog).click(noLog))
 
-  cy.wait('@signup-request').then(interception => {
+  cy.wait('@signup-request', noLog).then(interception => {
     // assert about the request payload
     expect(interception.request.body).to.deep.eq({
       user: {
@@ -44,7 +60,9 @@ Cypress.Commands.add('register', { prevSubject: 'optional' }, function (_subject
     expect(responseBody.user).to.have.property('token').and.to.be.a('string').and.not.to.be.empty
   })
 
-  cy.findByText('No articles are here... yet.', { timeout: 10000 }).should('be.visible')
+  cy.findByText('No articles are here... yet.', { log: false }).should('be.visible')
+
+  cy.log('**Automatic registration success**')
 })
 
 context('The New Post page', () => {
