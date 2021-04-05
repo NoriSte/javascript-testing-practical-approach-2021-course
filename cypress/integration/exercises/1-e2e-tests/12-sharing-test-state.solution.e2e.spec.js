@@ -75,7 +75,7 @@ context('The New Post page', () => {
     cy.viewport(600, 900)
   })
 
-  it('Should exist', () => {
+  it('Should get the user registered', () => {
     cy.register().should(user => {
       expect(user).to.have.property('username').and.not.to.be.empty
       expect(user).to.have.property('email').and.not.to.be.empty
@@ -86,7 +86,7 @@ context('The New Post page', () => {
     cy.findByText('New Post').should('be.visible')
   })
 
-  it('Should exist (leveraging the previous user)', () => {
+  it('Should get the user registered (leveraging the previous user)', () => {
     cy.register()
     cy.visit('/editor')
     cy.findByText('New Post').should('be.visible')
