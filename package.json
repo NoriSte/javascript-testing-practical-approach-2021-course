@@ -27,11 +27,11 @@
     "realworld:cy": "npm run cy-run-record -- --spec \"cypress/integration/realworld/**/*\"",
     "// EXERCISES ///////////": "",
     "run:exercises": "npm-run-all -s exercises:**",
-    "exercises:e2e": "npm run cy-run-record -- --spec \"cypress/integration/exercises/1-e2e-tests/*\"",
-    "exercises:ui-integration": "npm run cy-run-record -- --spec \"cypress/integration/exercises/2-ui-integration-tests/*\"",
-    "exercises:component": "npm run cy-run-record -- --spec \"components/3-component-tests/*\"",
-    "exercises:hook": "npm run cy-run-record -- --spec \"components/4-hook-tests/*\"",
-    "exercises:unit": "npm run cy-run-record -- --spec \"cypress/integration/exercises/5-unit-tests/*\""
+    "exercises:e2e": "npm run cy-run-record -- --spec \"cypress/integration/exercises/1-e2e-tests/*.solution.*\"",
+    "exercises:ui-integration": "npm run cy-run-record -- --spec \"cypress/integration/exercises/2-ui-integration-tests/*.solution.*\"",
+    "exercises:component": "npm run cy-run-record -- --spec \"components/3-component-tests/*.solution.*\"",
+    "exercises:hook": "npm run cy-run-record -- --spec \"components/4-hook-tests/*.solution.*\"",
+    "exercises:unit": "npm run cy-run-record -- --spec \"cypress/integration/exercises/5-unit-tests/*.solution.*\""
   },
   "repository": {
     "type": "git",

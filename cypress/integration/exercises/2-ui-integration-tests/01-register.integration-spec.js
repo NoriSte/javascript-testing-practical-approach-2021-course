@@ -1,10 +1,18 @@
 /// <reference types="Cypress" />
+
 /**
  * Main goals
- * - Move the fixtures away from the body of the test
+ * - Stub the server
+ *
+ * Additional goals
+ * - Clean up the test removing everything unneeded
  *
  * What to learn
- * - The importance of the name of the fixtures
+ * - What's stubbing
+ * - To stop the backend in order to avoid false positives
+ * - When to leverage E2E tests and when not
+ * - That working without a back-end parallelize FE/BE development
+ * - That the back-end slows down the front-end development
  */
 
 context('The sign up page', () => {

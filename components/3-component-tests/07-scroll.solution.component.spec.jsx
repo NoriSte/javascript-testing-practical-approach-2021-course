@@ -2,7 +2,7 @@
 
 /**
  * Main goals
- * - Scroll the list and test the selection range (by keeping the "shift" key pressed) works as expected
+ * - Scroll the list and test the selection range (by keeping the 'shift' key pressed) works as expected
  *
  * Additional goals
  * - Make the test working even without knowing in advance which items will be visible

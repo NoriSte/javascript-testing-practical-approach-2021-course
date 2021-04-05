@@ -26,7 +26,7 @@ Cypress.Commands.add('register', { prevSubject: 'optional' }, function (_subject
 
     cy.visit('/')
 
-    // use the "New Post" string to detect if the user is authenticated or not
+    // use the 'New Post' string to detect if the user is authenticated or not
     cy.findByText('New Post').should('be.visible')
 
     // the user has been already registered and it's logged in

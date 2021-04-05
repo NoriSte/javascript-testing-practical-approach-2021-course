@@ -2,11 +2,11 @@
 
 /**
  * Main goals
- * - Test the additive (by keeping the "meta" key pressed) selection
+ * - Test the additive (by keeping the 'meta' key pressed) selection
  *
  * Additional goals
- * - Test the subtractive selection ("alt" pressed)
- * - Test the range selection ("shift" pressed)
+ * - Test the subtractive selection ('alt' pressed)
+ * - Test the range selection ('shift' pressed)
  */
 
 import React from "react";

@@ -28,10 +28,14 @@ context('The home page', () => {
       )
       .then(user => localStorage.setItem('jwt', user.token))
 
-    cy.intercept('GET', '**/api/user', { fixture: 'users/user', headers }).as('user-request')
-    cy.intercept('GET', '**/api/tags', { fixture: 'tags/empty-tags', headers }).as('tags-request')
+    cy.intercept('GET', '**/api/user', { fixture: 'private/users/user', headers }).as(
+      'user-request',
+    )
+    cy.intercept('GET', '**/api/tags', { fixture: 'private/tags/empty-tags', headers }).as(
+      'tags-request',
+    )
     cy.intercept('GET', '**/api/articles/feed**', {
-      fixture: 'articles/empty-articles',
+      fixture: 'private/articles/empty-articles',
       headers,
     }).as('feed-request')
 

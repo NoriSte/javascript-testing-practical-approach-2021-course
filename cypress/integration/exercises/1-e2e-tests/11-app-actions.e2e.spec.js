@@ -6,7 +6,7 @@
  *
  * What to learn
  * - The importance of speeding up the tests
- * - Exposing "shortcuts" from the front-end application
+ * - Exposing 'shortcuts' from the front-end application
  * - Never using the UI to reach app state
  */
 

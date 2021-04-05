@@ -70,11 +70,11 @@ const getModifiersList = modifiers => Object.keys(modifiers).filter(key => modif
 
 describe('getUpdatedSelection', () => {
   runs.forEach(run => {
-    it(`When the selection is "${run.prevSelection}", clicking "${
+    it(`When the selection is '${run.prevSelection}', clicking '${
       run.clickedItemId
-    }" with modifiers "${getModifiersList(run.modifiers)}" should return "${
+    }' with modifiers '${getModifiersList(run.modifiers)}' should return '${
       run.expectedSelection
-    }"`, () => {
+    }'`, () => {
       // ------------------------------------------
       // Arrange
 

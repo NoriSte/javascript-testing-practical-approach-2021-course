@@ -27,7 +27,7 @@ Cypress.Commands.add('visitAuthenticated', { prevSubject: 'optional' }, function
     )
     .then(user => localStorage.setItem('jwt', user.token))
 
-  cy.intercept('GET', '**/api/user', { fixture: 'users/user', headers }).as('user-request')
+  cy.intercept('GET', '**/api/user', { fixture: 'private/users/user', headers }).as('user-request')
   cy.visit(path)
   cy.wait('@user-request')
 
@@ -42,10 +42,12 @@ beforeEach(() => {
 context('The home page', () => {
   it('Should work', () => {
     cy.intercept('GET', '**/api/articles/feed**', {
-      fixture: 'articles/empty-articles',
+      fixture: 'private/articles/empty-articles',
       headers,
     }).as('feed-request')
-    cy.intercept('GET', '**/api/tags', { fixture: 'tags/empty-tags', headers }).as('tags-request')
+    cy.intercept('GET', '**/api/tags', { fixture: 'private/tags/empty-tags', headers }).as(
+      'tags-request',
+    )
 
     cy.visitAuthenticated('/')
 
