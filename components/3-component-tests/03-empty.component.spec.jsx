@@ -2,23 +2,10 @@
 
 /**
  * Main goals
- * - Test that the list renders only the visible items
+ * - Test that the list renders nothing when empty
  *
  * Additional goals
- * - Test that the list renders the right number of items even when if one of them is partially visible
- *
- * What to learn
- * - How to mount a component with Cypress
- * - The AAA pattern
- * - Pros and cons of high-level tests
- * - Pros and cons of low-level tests
- * - Low-level tests exploit good design choices but they are hard for the same reason
- *
- * What to think about
- * - We could need to mock node_modules dependencies with low-level tests
- *
- * Testing rules
- * - Different test types provide different feedback and have different cost
+ * - Test that the scrollbar is not visible if not needed
  */
 
 import React from "react";
@@ -50,7 +37,7 @@ describe("VirtualList", () => {
     cy.viewport(300, 300);
   });
 
-  it("Should render only the visible items", () => {
+  it("Should not render anything when no items are provided", () => {
     // ...
     /*
     // the component is
@@ -59,7 +46,7 @@ describe("VirtualList", () => {
       getItemHeights={() => itemHeight}
       RenderItem={RenderItem}
       listHeight={listHeight}
-    />
+    />;
     */
   });
 });

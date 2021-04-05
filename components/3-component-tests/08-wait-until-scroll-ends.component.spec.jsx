@@ -1,24 +1,20 @@
 /// <reference types="Cypress" />
+/// <reference types="cypress-wait-until" />
 
 /**
  * Main goals
- * - Test that the list renders only the visible items
+ * - Wait until the scroll ends and check the visible items
  *
  * Additional goals
- * - Test that the list renders the right number of items even when if one of them is partially visible
+ * - Control the browser clock to avoid the waiting
  *
  * What to learn
- * - How to mount a component with Cypress
- * - The AAA pattern
- * - Pros and cons of high-level tests
- * - Pros and cons of low-level tests
- * - Low-level tests exploit good design choices but they are hard for the same reason
+ * - Waiting until something happens without the help of Cypress
+ * - How to control the browser clock to speed up the test
  *
  * What to think about
- * - We could need to mock node_modules dependencies with low-level tests
- *
- * Testing rules
- * - Different test types provide different feedback and have different cost
+ * - Component tests techniques: Visual tests, Snapshot tests, Shallow tests
+ * - Component test tools: Jest, Enzyme, Testing-library. Cypress allows debugging the component visually
  */
 
 import React from "react";
@@ -50,16 +46,5 @@ describe("VirtualList", () => {
     cy.viewport(300, 300);
   });
 
-  it("Should render only the visible items", () => {
-    // ...
-    /*
-    // the component is
-    <VirtualList
-      items={items}
-      getItemHeights={() => itemHeight}
-      RenderItem={RenderItem}
-      listHeight={listHeight}
-    />
-    */
-  });
+  it("Should render only the visible items", () => {});
 });

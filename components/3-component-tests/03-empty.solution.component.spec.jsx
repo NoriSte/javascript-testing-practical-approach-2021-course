@@ -2,7 +2,7 @@
 
 /**
  * Main goals
- * - Test that the list renders nothing when is empty
+ * - Test that the list renders nothing when empty
  *
  * Additional goals
  * - Test that the scrollbar is not visible if not needed

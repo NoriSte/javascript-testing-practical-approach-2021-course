@@ -43,28 +43,17 @@ const RenderItem = ({ item, selected, onClick }) => {
 
 // wrap the VirtualList to internally manage the selection, passing outside only the new selection
 function SelectableList(props) {
-  const { onSelect, ...virtualListProps } = props;
-
-  // store the selection in an internal state
-  const [selectedItems, setSelectedItems] = React.useState([]);
-  const handleSelect = React.useCallback(
-    ({ newSelectedIds }) => {
-      setSelectedItems(newSelectedIds);
-      // call the passed spy to notify the test about the new selected ids
-      onSelect(newSelectedIds);
-    },
-    [setSelectedItems, onSelect]
-  );
+  // this component must
+  // - pass all the props down to the VirtualList
+  // - accept a `onSelect` prop that will be passed by the test to intercept every selection update
+  // - manage the selection and re-rendering the VirtualList when the selection changes
 
   // Transparently renders the VirtualList, apart from:
   // - storing the selection
   // - passing the new selection back to the test
   return (
     <VirtualList
-      selectedItemIds={selectedItems}
-      onSelect={handleSelect}
-      // VirtualList props passed from the test
-      {...virtualListProps}
+    // ...
     />
   );
 }
@@ -76,39 +65,7 @@ describe("VirtualList wrapper", () => {
   });
 
   it("Playground: test the selection with a mini-app that exposes the selected items", () => {
-    // ------------------------------------------
-    // Arrange
-
-    // creating the data
-    const itemHeight = 30;
-    const listHeight = 90;
-    const items = [
-      { id: 1, name: "Item 1" },
-      { id: 2, name: "Item 2" },
-      { id: 3, name: "Item 3" },
-    ];
-
-    // mounting the component
-    mount(
-      <SelectableList
-        // test-specific props
-        onSelect={cy.spy().as("onSelect")}
-        // VirtualList props
-        items={items}
-        getItemHeights={() => itemHeight}
-        RenderItem={RenderItem}
-        listHeight={listHeight}
-      />
-    );
-
-    // ------------------------------------------
-    // Act
-    cy.findByText("Item 1").click();
-
-    // ------------------------------------------
-    cy.get("@onSelect").should((spy) => {
-      expect(spy).to.have.been.calledOnce;
-      expect(spy).to.have.been.calledWith([1]);
-    });
+    // ...
+    // `SelectableList` must be mounted instead of `VirtualList`
   });
 });
