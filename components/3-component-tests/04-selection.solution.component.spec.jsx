@@ -15,13 +15,18 @@ import { mount } from "@cypress/react";
 import { VirtualList } from "../VirtualList/VirtualList";
 
 // The item renderer to be passed to the list
-const createRenderItem = ({ height }) => ({ item, onClick }) => {
+const RenderItem = ({ item, onClick }) => {
   // the colors are helpful to easily distinguish the rows
   const backgroundColor = parseInt(item.id.toString()) % 2 ? "#DDD" : "#EEE";
 
   return (
     <div
-      style={{ height, backgroundColor, fontSize: 15, fontFamily: "arial" }} // the item must call the onClick callback to get the selection work
+      style={{
+        height: "30px",
+        backgroundColor,
+        fontSize: 15,
+        fontFamily: "arial",
+      }} // the item must call the onClick callback to get the selection work
       onClick={(event) => {
         onClick({ item, event });
       }}
@@ -59,7 +64,7 @@ describe("VirtualList", () => {
       <VirtualList
         items={items}
         getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
+        RenderItem={RenderItem}
         listHeight={listHeight}
         onSelect={onSelectSpy}
       />

@@ -12,7 +12,7 @@ import React from "react";
 import { mount } from "@cypress/react";
 import { VirtualList } from "../VirtualList/VirtualList";
 
-const createRenderItem = ({ height }) => ({ item, selected, onClick }) => {
+const RenderItem = ({ item, selected, onClick }) => {
   const even = parseInt(item.id.toString()) % 2;
 
   // the colors are helpful to easily distinguish the rows
@@ -27,7 +27,12 @@ const createRenderItem = ({ height }) => ({ item, selected, onClick }) => {
   return (
     <div
       data-testid={`item-${item.id}`}
-      style={{ height, backgroundColor, fontSize: 15, fontFamily: "arial" }} // the item must call the onClick callback to get the selection work
+      style={{
+        height: "30px",
+        backgroundColor,
+        fontSize: 15,
+        fontFamily: "arial",
+      }} // the item must call the onClick callback to get the selection work
       onClick={(event) => {
         onClick({ item, event });
       }}
@@ -109,7 +114,7 @@ describe("VirtualList wrapper", () => {
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
+        RenderItem={RenderItem}
         listHeight={listHeight}
       />
     );
@@ -180,7 +185,7 @@ describe("VirtualList wrapper", () => {
         // VirtualList props
         items={items}
         getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
+        RenderItem={RenderItem}
         listHeight={listHeight}
       />
     );

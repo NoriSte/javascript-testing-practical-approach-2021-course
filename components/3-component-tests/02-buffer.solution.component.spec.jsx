@@ -13,12 +13,19 @@ import { mount } from "@cypress/react";
 import { VirtualList } from "../VirtualList/VirtualList";
 
 // The item renderer to be passed to the list
-const createRenderItem = ({ height }) => ({ item }) => {
+const RenderItem = ({ item }) => {
   // the colors are helpful to easily distinguish the rows
   const backgroundColor = parseInt(item.id.toString()) % 2 ? "#DDD" : "#EEE";
 
   return (
-    <div style={{ height, backgroundColor, fontSize: 15, fontFamily: "arial" }}>
+    <div
+      style={{
+        height: "30px",
+        backgroundColor,
+        fontSize: 15,
+        fontFamily: "arial",
+      }}
+    >
       {item.name}
     </div>
   );
@@ -55,7 +62,7 @@ describe("VirtualList", () => {
       <VirtualList
         items={items}
         getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
+        RenderItem={RenderItem}
         listHeight={listHeight}
         buffer={buffer}
       />
@@ -101,7 +108,7 @@ describe("VirtualList", () => {
       <VirtualList
         items={items}
         getItemHeights={() => itemHeight}
-        RenderItem={createRenderItem({ height: itemHeight })}
+        RenderItem={RenderItem}
         listHeight={listHeight}
         buffer={buffer}
       />
