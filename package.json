@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "npm run realworld:install",
     "test": "start-server-and-test realworld:start http://localhost:4100 test:everything",
+    "test:smoke": "start-server-and-test realworld:start http://localhost:4100 realworld:cy",
     "test:everything": "npm run realworld:cy && npm run run:exercises",
     "// CYPRESS ///////////": "",
     "cy:open": "cypress open",
