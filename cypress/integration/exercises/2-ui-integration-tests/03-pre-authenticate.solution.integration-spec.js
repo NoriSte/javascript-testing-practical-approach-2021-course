@@ -6,6 +6,9 @@
  *
  * Additional goals
  * - If you use a fixture, assert about it to check it contains the data you need
+ *
+ * What to learn
+ * - We don't need to pass through the registration page anymore
  */
 
 const headers = { 'Access-Control-Allow-Origin': '*' }

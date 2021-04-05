@@ -21,6 +21,12 @@
  *
  * What to think about
  * - The test could fail because of server delays, Cypress doesn't wait forever
+ *
+ * Testing rules
+ * - Tests must be deterministic
+ * - The tests should not fail randomly. False-negative tests are the worst ones
+ * - Obviously, the opposite is important too: tests must fail if the app does not work
+ * - A bad test is worse then not having it
  */
 
 context('The sign up page', () => {

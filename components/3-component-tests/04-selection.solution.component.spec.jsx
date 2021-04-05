@@ -3,6 +3,11 @@
 /**
  * Main goals
  * - Test that clicking on an item select it
+ *
+ * What to learn
+ * - What black-box testing means while speaking about a component and its APIs
+ * - How to use Spies
+ * - What testing without a visual feedback means
  */
 
 import React from "react";

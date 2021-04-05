@@ -15,6 +15,10 @@ import jestExpect from 'expect'
  * - Excluding as much errors as possible
  * - How much important is to test the payloads, even if it's not a user-like check
  * - Understanding what to care about: does the client need to know how the token is made up?
+ *
+ * Testing rules
+ * - A failing test must give useful feedback. It must tell you what failed and why, without re-launching or debugging it
+ * - Debugging a failing test is way harder than debugging an application
  */
 
 context('The sign up page', () => {

@@ -14,6 +14,9 @@
  * What to think about
  * - Keeping the abstraction level as low as possible (let's talk about the PageObject model...)
  * - How could you speed up the test without using `type`?
+ *
+ * Testing rules
+ * - Keep the test code simple, stupid! DRY it as few as possible
  */
 
 const noLog = { log: false }

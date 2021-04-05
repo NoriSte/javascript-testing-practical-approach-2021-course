@@ -2,7 +2,17 @@
 
 /**
  * Main goals
- * - Create a custom command that get the user authenticated
+ * - Create a custom command that gets the user authenticated
+ *
+ * Additional goals
+ * - by creating the backbone for testing the Create New Post page, ensure that the custom command
+ * doesn't contain useless interceptions
+ *
+ * What to think about
+ * - The amazing speed of the current test
+ *
+ * Testing rules
+ * - Tests must be fast, as fast as possible
  */
 
 const headers = { 'Access-Control-Allow-Origin': '*' }

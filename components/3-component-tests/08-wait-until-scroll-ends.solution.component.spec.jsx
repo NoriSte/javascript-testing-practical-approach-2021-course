@@ -7,6 +7,14 @@
  *
  * Additional goals
  * - Control the browser clock to avoid the waiting
+ *
+ * What to learn
+ * - Waiting until something happens without the help of Cypress
+ * - How to control the browser clock to speed up the test
+ *
+ * What to think about
+ * - Component tests techniques: Visual tests, Snapshot tests, Shallow tests
+ * - Component test tools: Jest, Enzyme, Testing-library. Cypress allows debugging the component visually
  */
 
 import React from "react";

@@ -6,6 +6,19 @@
  *
  * Additional goals
  * - Test that the list renders the right number of items even when if one of them is partially visible
+ *
+ * What to learn
+ * - How to mount a component with Cypress
+ * - The AAA pattern
+ * - Pros and cons of high-level tests
+ * - Pros and cons of low-level tests
+ * - Low-level tests exploit good design choices but they are hard for the same reason
+ *
+ * What to think about
+ * - We could need to mock node_modules dependencies with low-level tests
+ *
+ * Testing rules
+ * - Different test types provide different feedback and have different cost
  */
 
 import React from "react";
@@ -73,7 +86,7 @@ describe("VirtualList", () => {
 
     // creating the data
     const itemHeight = 30;
-    const listHeight = 80; // must be `itemHeight` multiplied by the number of visible items
+    const listHeight = 80;
     const items = [
       // visible ones
       { id: 1, name: "Item 1" },

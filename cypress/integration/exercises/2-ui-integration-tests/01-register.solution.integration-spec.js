@@ -6,6 +6,13 @@
  *
  * Additional goals
  * - Clean up the test removing everything unneeded
+ *
+ * What to learn
+ * - What's stubbing
+ * - To stop the backend in order to avoid false positives
+ * - When to leverage E2E tests and when not
+ * - That working without a back-end parallelize FE/BE development
+ * - That the back-end slows down the front-end development
  */
 
 const headers = { 'Access-Control-Allow-Origin': '*' }

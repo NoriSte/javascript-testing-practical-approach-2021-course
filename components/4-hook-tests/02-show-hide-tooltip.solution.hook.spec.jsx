@@ -3,10 +3,15 @@
 /**
  * Main goals
  * - Test that the `useDelayedShow` set `visible` to `true` with a delay
+ * - Speed up the test by leveraging cy.clock()
  *
  * Additional goals
- * - Then, test that the `useDelayedShow` set `visible` to `false` and that that `visible` doesn't return `true` after a while
+ * - Then, test that the `useDelayedShow` set `visible` to `false` immediately
+ * - Then, test hat that `visible` doesn't return `true` after a while
  * - Test it by controlling the test failure
+ *
+ * What to learn
+ * - How to properly do negative assertions
  */
 
 import React from "react";
@@ -71,13 +76,6 @@ describe("useDelayedShow", () => {
     // Assert
     // `visible` must be set to `false` immediately
     cy.contains("Visible: false", { timeout: 0 }).should("be.visible");
-
-    // ------------------------------------------
-    // Act
-    cy.tick(10000);
-    // Assert
-    // `visible` must not return to `true` because of uncleared timeouts
-    cy.contains("Visible: false").should("be.visible");
   });
 
   it("Playground: Repeat the previous test by controlling that `visible: true` does not return visible through controlling the failure of the test ", () => {

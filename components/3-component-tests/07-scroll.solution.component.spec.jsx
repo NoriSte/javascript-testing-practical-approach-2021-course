@@ -2,7 +2,7 @@
 
 /**
  * Main goals
- * - Scroll the list and tests that selection a range (by keeping the "shift" key pressed) works as expected
+ * - Scroll the list and test the selection range (by keeping the "shift" key pressed) works as expected
  *
  * Additional goals
  * - Make the test working even without knowing in advance which items will be visible
@@ -127,6 +127,7 @@ describe("VirtualList wrapper", () => {
 
     cy.get("body").type("{shift}", { release: false });
 
+    // Item 7, 8, 9, and 10 are going to be visible after the scroll
     // click on the 10th item. It's going to be clicked as soon as it's in the DOM and clickable
     cy.findByText("Item 10")
       .click()

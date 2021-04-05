@@ -4,6 +4,9 @@
  * Main goals
  * - Build a wrapper around the VirtualList that allows to re-render the component once the selection changes
  * - Modify the rendered item to show the selection
+ *
+ * What to learn
+ * - Re-rendering a component while testing it
  */
 
 import React from "react";

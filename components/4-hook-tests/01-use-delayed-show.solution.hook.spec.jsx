@@ -2,7 +2,10 @@
 
 /**
  * Main goals
- * - Test the `useDelayedShow` hook through a component that uses it
+ * - Test the `useDelayedShow` initial state hook through a component that uses it
+ *
+ * What to learn
+ * - How we could test a component the same way we use it
  */
 
 import React from "react";
