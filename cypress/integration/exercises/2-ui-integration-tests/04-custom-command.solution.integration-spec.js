@@ -19,7 +19,7 @@ const headers = { 'Access-Control-Allow-Origin': '*' }
 
 Cypress.Commands.add('visitAuthenticated', { prevSubject: 'optional' }, function (_subject, path) {
   // set up the jwt leveraging the fixture
-  cy.fixture('users/signup')
+  cy.fixture('private/users/signup')
     .its('user')
     // check the fixture content in order to have more direct feedback in case of failures
     .should(

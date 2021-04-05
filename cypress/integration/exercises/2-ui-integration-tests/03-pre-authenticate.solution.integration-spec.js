@@ -20,7 +20,7 @@ context('The home page', () => {
     cy.visit('/register')
 
     // set up the jwt leveraging the fixture
-    cy.fixture('users/signup')
+    cy.fixture('private/users/signup')
       .its('user')
       // check the fixture content in order to have more direct feedback in case of failures
       .should(
