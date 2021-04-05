@@ -20,4 +20,3 @@ install:
   - npm install
 script:
   - npm test
-  - npm run book:build
