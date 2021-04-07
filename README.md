@@ -30,7 +30,6 @@ you're ready for the course!
 ## Environment
 
 - Node.js 14+
-- [MongoDB (Community Edition)](https://docs.mongodb.com/manual/installation/)
 - [Docker](https://docs.docker.com/install/)
 
 ## About me
