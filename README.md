@@ -8,9 +8,18 @@ This is the [reference repository](https://github.com/NoriSte/javascript-testing
 
 The course starts from the peak of the testing pyramid and goes down instead of following the "standard" testing path.
 
+## Environment
+
+Requirements
+- Git 2.29
+- Node.js 14
+- NPM 6.14
+- [Docker Desktop](https://docs.docker.com/install/)
 ## Getting ready for the course
 
-Are you ready for the course? Check it out by
+Are you ready for the course? Check it out with the following guides.
+
+### Mac OS and Linux
 - Installing everything listed in the [Environment](#environment) section
 - Having Docker Desktop running
 - Launching `$ npm install`
@@ -27,10 +36,25 @@ The steps above launch the back-end and application, the front-end application, 
 ```
 you're ready for the course!
 
-## Environment
+### Windows
+Getting everything working reliably on Windows is hard. On Windows machines, the public version of RealWorld is used:
+- Download [Cypress as a desktop app](https://download.cypress.io/desktop/6.8.0)
+- Change [cypress.json' `baseUrl`](cypress.json#L2) to `https://react-redux.realworld.io`
 
-- Node.js 14+
-- [Docker](https://docs.docker.com/install/)
+The tests without local dependencies
+- must be adapted considering the changes between the local version and the public one
+  - URLs are hash-based on the public version
+  - passwords must be 9+ long
+  - some buttons and labels have different texts
+- won't work if leverage the App Actions
+- won't work if leverage additional packages (like jest-expect)
+
+
+## During the course
+The most important scripts are:
+- `$ npm run cy:open`: starts the Cypress UI
+- `$ npm run realworld:start`: starts both the back-end and the front-end project (`$ npm run realworld:backend:stop` to stop the server before re-launch)
+- `$ npm run realworld:frontend:start`: starts only the front-end project
 
 ## About me
 
