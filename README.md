@@ -53,7 +53,7 @@ The tests without local dependencies
 ## During the course
 The most important scripts are:
 - `$ npm run cy:open`: starts the Cypress UI
-- `$ npm run realworld:start`: starts both the back-end and the front-end project (`$ npm run realworld:backend:stop` to stop the server before re-launch)
+- `$ npm run realworld:start`: starts both the back-end and the front-end project
 - `$ npm run realworld:frontend:start`: starts only the front-end project
 
 ## About me

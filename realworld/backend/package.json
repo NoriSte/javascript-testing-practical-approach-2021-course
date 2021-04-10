@@ -1,15 +1,15 @@
-{
+l{
   "name": "conduit-node",
   "version": "1.0.0",
   "description": "conduit on node",
   "main": "app.js",
   "scripts": {
-    "mongo:start": "docker run --name realworld-mongo -p 27017:27017 mongo & sleep 5",
+    "mongo:start": "npm run mongo:stop && docker run --name realworld-mongo -p 27017:27017 mongo & sleep 5",
     "start": "cross-env PERSIST_DB=false node ./app.js",
     "dev": "nodemon ./app.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
     "stop": "lsof -ti :3100 | xargs kill",
-    "mongo:stop": "docker stop realworld-mongo && docker rm realworld-mongo"
+    "mongo:stop": "docker stop realworld-mongo || true && docker rm realworld-mongo || true"
   },
   "repository": {
     "type": "git",
