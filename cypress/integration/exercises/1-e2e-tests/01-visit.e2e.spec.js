@@ -16,11 +16,6 @@
  */
 
 context('The site', () => {
-  beforeEach(() => {
-    // adapt the viewport, allows the instructor to have more vertical windows when sharing the screen
-    cy.viewport(600, 900)
-  })
-
   it('Should work', () => {
     // ...
   })
