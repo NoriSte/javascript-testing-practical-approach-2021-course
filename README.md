@@ -85,7 +85,7 @@ I wrote a big [UI Testing Best Practices](https://github.com/NoriSte/ui-testing-
 
 
 
-<!--
+
 ## Resources
 
 ### Cypress Docs
@@ -125,4 +125,4 @@ I wrote a big [UI Testing Best Practices](https://github.com/NoriSte/ui-testing-
 - Toast UI: [Pragmatic Front-End Testing Strategies](https://medium.com/@toastui/pragmatic-front-end-testing-strategies-1-4a969ab09453)
 - Yoni Goldberg: [JavaScript & Node.js Testing Best Practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
 - Yoni Goldberg: [JavaScript Testing A-Z](https://github.com/goldbergyoni/javascript-testing-a-to-z) (still in private mode at the time of writing)
-- Stefano Magni: [UI Testing Best Practices](https://github.com/NoriSte/ui-testing-best-practices) -->
+- Stefano Magni: [UI Testing Best Practices](https://github.com/NoriSte/ui-testing-best-practices)
